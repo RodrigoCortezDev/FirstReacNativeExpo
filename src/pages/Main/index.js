@@ -15,7 +15,7 @@ import {
 	ProfileButtonText,
 } from './styles';
 import api from '../../services/api';
-
+import FadeIn from '../Animation/FadeIn';
 import { MaterialIcons } from 'react-native-vector-icons';
 
 export default class Main extends React.Component {
@@ -95,35 +95,52 @@ export default class Main extends React.Component {
 
 		return (
 			<Container>
-				<Form>
-					<Input
-						autoCorrect={false}
-						autoCapitalize="none"
-						placeholder="Adicionar Usuário..."
-						onChangeText={(text) => this.setState({ newUser: text })}
-						returnKeyType="send"
-						onSubmitEditing={this.handleAddUser}
-						value={newUser}
-					/>
-					<SubmitButton enabled={!loading} carregando={loading} rippleColor="#fff" onPress={this.handleAddUser}>
-						{loading ? <ActivityIndicator color="#fff" /> : <MaterialIcons name="add" size={20} color="#fff" />}
-					</SubmitButton>
-				</Form>
+				<FadeIn
+					style={
+						{
+							/*width: 250, height: 50, backgroundColor: 'white'*/
+						}
+					}
+				>
+					<Form>
+						<Input
+							autoCorrect={false}
+							autoCapitalize="none"
+							placeholder="Adicionar Usuário..."
+							onChangeText={(text) => this.setState({ newUser: text })}
+							returnKeyType="send"
+							onSubmitEditing={this.handleAddUser}
+							value={newUser}
+						/>
+						<SubmitButton
+							enabled={!loading}
+							carregando={loading}
+							rippleColor="#fff"
+							onPress={this.handleAddUser}
+						>
+							{loading ? (
+								<ActivityIndicator color="#fff" />
+							) : (
+								<MaterialIcons name="add" size={20} color="#fff" />
+							)}
+						</SubmitButton>
+					</Form>
 
-				<List
-					data={users}
-					keyExtractor={(user) => user.login} //{(user, login) => login.toString()}
-					renderItem={({ item }) => (
-						<User>
-							<Avatar source={{ uri: item.avatar }} />
-							<Name>{item.name}</Name>
-							<Bio>{item.bio}</Bio>
-							<ProfileButton onPress={() => this.handleNavigateUser(item)}>
-								<ProfileButtonText>Ver Perfil</ProfileButtonText>
-							</ProfileButton>
-						</User>
-					)}
-				/>
+					<List
+						data={users}
+						keyExtractor={(user) => user.login} //{(user, login) => login.toString()}
+						renderItem={({ item }) => (
+							<User>
+								<Avatar source={{ uri: item.avatar }} />
+								<Name>{item.name}</Name>
+								<Bio>{item.bio}</Bio>
+								<ProfileButton onPress={() => this.handleNavigateUser(item)}>
+									<ProfileButtonText>Ver Perfil</ProfileButtonText>
+								</ProfileButton>
+							</User>
+						)}
+					/>
+				</FadeIn>
 			</Container>
 		);
 	}

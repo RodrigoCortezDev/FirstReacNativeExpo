@@ -91,12 +91,8 @@ export default class Main extends React.Component {
 						value={newUser}
 					/>
 					<SubmitButton enabled={!loading} carregando={loading} rippleColor="#fff" onPress={this.handleAddUser}>
-						{loading ? <ActivityIndicator color="#fff" /> : <SubmitButtonText> + </SubmitButtonText>}
+						{loading ? <ActivityIndicator color="#fff" /> : <MaterialIcons name="add" size={20} color="#fff" />}
 					</SubmitButton>
-
-					{/* <SubmitButton color="#fff" onPress={() => this.props.navigation.navigate('Users')}>
-						<Icon name="add" size={20} color="#fff" />
-					</SubmitButton> */}
 				</Form>
 
 				<List

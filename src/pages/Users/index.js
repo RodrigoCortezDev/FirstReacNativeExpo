@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Header, Avatar, Name, Bio, Starred, OwnerAvatar, Info, Title, Author, Stars } from './styles';
+import api from '../../services/api';
 import FadeIn from '../Animation/FadeIn';
 
 export default class Users extends React.Component {
@@ -14,12 +15,11 @@ export default class Users extends React.Component {
 			//Setando o Header com o nome do usuário
 			const user = route.params.user;
 			navigation.setOptions({ headerTitle: user.name });
-
 			//Buscando pela api os repositorios definidos como estrelas
 			const reponse = await api.get(`/users/${user.login}/starred`);
 			this.setState({ stars: reponse.data });
 		} catch (error) {
-			console.tron.log(error);
+			console.tron.warn(error.message);
 		}
 	}
 

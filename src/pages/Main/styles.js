@@ -35,13 +35,6 @@ export const SubmitButton = styled(RectButton)`
 	opacity: ${(props) => (props.carregando ? 0.7 : 1)};
 `;
 
-export const SubmitButtonText = styled.Text`
-	font-size: 14px;
-	font-weight: bold;
-	color: #fff;
-	text-transform: uppercase;
-`;
-
 export const List = styled.FlatList.attrs({
 	showsVerticalScrollIndicator: false,
 })`

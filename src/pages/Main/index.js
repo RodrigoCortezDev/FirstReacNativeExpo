@@ -1,12 +1,11 @@
 import React from 'react';
-import { Keyboard, ActivityIndicator } from 'react-native';
+import { Keyboard, ActivityIndicator, AppState, ToastAndroid } from 'react-native';
 import { AsyncStorage } from 'react-native';
 import {
 	Container,
 	Form,
 	Input,
 	SubmitButton,
-	SubmitButtonText,
 	List,
 	User,
 	Avatar,
@@ -25,6 +24,7 @@ export default class Main extends React.Component {
 		newUser: '',
 		users: [],
 		loading: false,
+		appState: AppState.currentState,
 	};
 
 	//Ao abrir o app
@@ -33,6 +33,7 @@ export default class Main extends React.Component {
 		if (users) {
 			this.setState({ users: JSON.parse(users) });
 		}
+		AppState.addEventListener('change', this.handleAppStateChange);
 	}
 
 	//Ao alterar o state
@@ -42,6 +43,20 @@ export default class Main extends React.Component {
 			await AsyncStorage.setItem('users', JSON.stringify(users));
 		}
 	}
+
+	//Quando o aplicativo é fechado
+	componentWillUnmount() {
+		AppState.removeEventListener('change', this.handleAppStateChange);
+	}
+
+	//Função registrada para capturar quando o app é minumizado
+	handleAppStateChange = (nextAppState) => {
+		//Ou seja se estado atual é ativo e o anterior é inativo e background
+		if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
+			ToastAndroid.showWithGravity('Bem vindo de volta ao App', ToastAndroid.SHORT, ToastAndroid.BOTTOM);
+		}
+		this.setState({ appState: nextAppState });
+	};
 
 	//Adicionar o usuário
 	handleAddUser = async () => {

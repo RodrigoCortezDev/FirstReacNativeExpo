@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Header, Avatar, Name, Bio, Starred, OwnerAvatar, Info, Title, Author, Stars } from './styles';
+import FadeIn from '../Animation/FadeIn';
 
 export default class Users extends React.Component {
 	state = {
@@ -29,24 +30,26 @@ export default class Users extends React.Component {
 
 		return (
 			<Container>
-				<Header>
-					<Avatar source={{ uri: user.avatar }} />
-					<Name>{user.name}</Name>
-					<Bio>{user.bio}</Bio>
-				</Header>
-				<Stars
-					data={stars}
-					keyExtractor={(star) => String(star.id)}
-					renderItem={({ item }) => (
-						<Starred>
-							<OwnerAvatar source={{ uri: item.owner.avatar_url }} />
-							<Info>
-								<Title>{item.name}</Title>
-								<Author>{item.owner.login}</Author>
-							</Info>
-						</Starred>
-					)}
-				/>
+				<FadeIn>
+					<Header>
+						<Avatar source={{ uri: user.avatar }} />
+						<Name>{user.name}</Name>
+						<Bio>{user.bio}</Bio>
+					</Header>
+					<Stars
+						data={stars}
+						keyExtractor={(star) => String(star.id)}
+						renderItem={({ item }) => (
+							<Starred>
+								<OwnerAvatar source={{ uri: item.owner.avatar_url }} />
+								<Info>
+									<Title>{item.name}</Title>
+									<Author>{item.owner.login}</Author>
+								</Info>
+							</Starred>
+						)}
+					/>
+				</FadeIn>
 			</Container>
 		);
 	}

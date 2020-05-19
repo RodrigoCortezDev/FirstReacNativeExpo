@@ -3,6 +3,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
 	flex: 1;
 	padding: 30px;
+	background: #ddd;
 `;
 
 export const Header = styled.View`
@@ -29,7 +30,7 @@ export const Name = styled.Text`
 
 export const Bio = styled.Text`
 	font-size: 14px;
-	color: #999;
+	color: #888;
 	margin-top: 5px;
 	text-align: center;
 `;

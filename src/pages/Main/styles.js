@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
 	flex: 1;
 	padding: 30px;
+	background: #ddd;
 `;
 
 export const Form = styled.View`
@@ -47,6 +48,7 @@ export const User = styled.View`
 	background: #f5f5f5;
 	margin: 5px;
 	border-radius: 10px;
+	padding: 5px;
 `;
 
 export const Avatar = styled.Image`
@@ -72,6 +74,8 @@ export const Bio = styled.Text.attrs({
 	line-height: 18px;
 	color: #999;
 	margin-top: 5px;
+	margin-right: 10px;
+	margin-left: 10px;
 	text-align: center;
 `;
 

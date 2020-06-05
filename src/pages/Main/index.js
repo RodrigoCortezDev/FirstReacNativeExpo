@@ -50,7 +50,7 @@ export default class Main extends React.Component {
 	}
 
 	//Função registrada para capturar quando o app é minumizado
-	handleAppStateChange = (nextAppState) => {
+	handleAppStateChange = nextAppState => {
 		//Ou seja se estado atual é ativo e o anterior é inativo e background
 		if (this.state.appState.match(/inactive|background/) && nextAppState === 'active') {
 			ToastAndroid.showWithGravity('Bem vindo de volta ao App', ToastAndroid.SHORT, ToastAndroid.BOTTOM);
@@ -82,7 +82,7 @@ export default class Main extends React.Component {
 	};
 
 	//Realiza a navegação entre abas
-	handleNavigateUser = (user) => {
+	handleNavigateUser = user => {
 		const { navigation } = this.props;
 		if (navigation) {
 			navigation.navigate('Users', { user });
@@ -107,7 +107,7 @@ export default class Main extends React.Component {
 							autoCorrect={false}
 							autoCapitalize="none"
 							placeholder="Adicionar Usuário..."
-							onChangeText={(text) => this.setState({ newUser: text })}
+							onChangeText={text => this.setState({ newUser: text })}
 							returnKeyType="send"
 							onSubmitEditing={this.handleAddUser}
 							value={newUser}
@@ -128,7 +128,7 @@ export default class Main extends React.Component {
 
 					<List
 						data={users}
-						keyExtractor={(user) => user.login} //{(user, login) => login.toString()}
+						keyExtractor={user => user.login} //{(user, login) => login.toString()}
 						renderItem={({ item }) => (
 							<User>
 								<Avatar source={{ uri: item.avatar }} />

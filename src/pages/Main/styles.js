@@ -1,6 +1,5 @@
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
-import Lottier from '';
 
 export const Container = styled.View`
 	flex: 1;
@@ -34,7 +33,7 @@ export const SubmitButton = styled(RectButton)`
 	margin-left: 10px;
 	padding: 0 12px;
 	width: 50px;
-	opacity: ${(props) => (props.carregando ? 0.7 : 1)};
+	opacity: ${props => (props.carregando ? 0.7 : 1)};
 `;
 
 export const List = styled.FlatList.attrs({

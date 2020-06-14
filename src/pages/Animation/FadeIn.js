@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { Animated } from 'react-native';
 
-const FadeIn = (props) => {
+const FadeIn = props => {
 	const fadeAnim = useRef(new Animated.Value(0)).current; // Initial value for opacity: 0
 
 	React.useEffect(() => {
